@@ -29,43 +29,9 @@ TexturedBackground {
 }
 Floor {
   translation 1.75 -0.75 0
-  size 40 40
+  size 5 5
   tileSize 1 1
-  appearance CarpetFibers {
-    colorOverride 0.6 0.6 0.6
-  }
 }
-
-Solid {
-  children [
-    DEF BORDER Shape {
-      geometry Mesh {
-        url "meshes/husarion_world.dae"
-        materialIndex 0
-      }
-      appearance PBRAppearance {
-        baseColor 0.6307572 0.005605392 0.02415763
-      }
-    }
-    DEF LOGO Shape {
-      geometry Mesh {
-        url "meshes/husarion_world.dae"
-        materialIndex 1
-      }
-      appearance PBRAppearance {
-        baseColor 1 1 1
-      }
-    }
-  ]
-  boundingObject Group{
-    children[
-      USE LOGO
-      USE BORDER
-    ]
-  }
-}
-
-
 Rosbot {
   name "rosbot"
   translation 3 -2 0
