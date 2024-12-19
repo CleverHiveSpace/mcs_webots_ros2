@@ -29,15 +29,20 @@ from webots_ros2_driver.webots_launcher import WebotsLauncher
 from webots_ros2_driver.webots_controller import WebotsController
 from webots_ros2_driver.wait_for_controller_connection import WaitForControllerConnection
 
+WEBOTS_PORT = '4321'
+
 
 def get_ros2_nodes(*args):
     package_dir = get_package_share_directory('webots_ros2_husarion')
-    robot_description_path = os.path.join(package_dir, 'resource', 'rosbot_webots.urdf')
-    links_remappings_file_path = os.path.join(package_dir, 'resource', 'rosbot_links_remappings.yaml')
+    robot_description_path = os.path.join(
+        package_dir, 'resource', 'rosbot_webots.urdf')
+    links_remappings_file_path = os.path.join(
+        package_dir, 'resource', 'rosbot_links_remappings.yaml')
 
     ekf_config = os.path.join(package_dir, 'resource', 'ekf.yaml')
 
-    ros2_control_params = os.path.join(package_dir, 'resource', 'rosbot_controllers.yaml')
+    ros2_control_params = os.path.join(
+        package_dir, 'resource', 'rosbot_controllers.yaml')
     use_sim_time = LaunchConfiguration('use_sim_time', default=True)
 
     # ROS control spawners
@@ -57,9 +62,11 @@ def get_ros2_nodes(*args):
         prefix=controller_manager_prefix,
         arguments=['joint_state_broadcaster'] + controller_manager_timeout,
     )
-    ros_control_spawners = [diff_drive_controller_spawner, joint_state_broadcaster_spawner]
+    ros_control_spawners = [
+        diff_drive_controller_spawner, joint_state_broadcaster_spawner]
 
     rosbot_driver = WebotsController(
+        port=WEBOTS_PORT,
         robot_name='rosbot',
         parameters=[
             {
@@ -121,6 +128,7 @@ def generate_launch_description():
     mode = LaunchConfiguration('mode')
 
     webots = WebotsLauncher(
+        port=WEBOTS_PORT,
         world=PathJoinSubstitution([package_dir, 'worlds', world]),
         mode=mode,
         ros2_supervisor=True
