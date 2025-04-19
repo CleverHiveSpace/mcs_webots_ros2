@@ -4,7 +4,7 @@
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/master/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/master/projects/objects/floors/protos/Floor.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/master/projects/appearances/protos/CarpetFibers.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/master/projects/robots/husarion/rosbot/protos/Rosbot.proto"
+EXTERNPROTO "../protos/Rosbot.proto"
 
 WorldInfo {
   info [

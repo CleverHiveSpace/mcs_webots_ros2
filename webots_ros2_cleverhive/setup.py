@@ -1,6 +1,31 @@
 from setuptools import setup
-
+import os
 package_name = 'webots_ros2_cleverhive'
+
+def collect_files_recursively(directory, package_name):
+    """
+    Recursively collect files from a directory and format them for data_files.
+    
+    Args:
+        directory (str): Directory to scan recursively
+        package_name (str): Name of the package
+        
+    Returns:
+        list: List of tuples (destination_path, [file_paths]) for data_files
+    """
+    collected_files = []
+    if os.path.exists(directory):
+        for root, dirs, files in os.walk(directory):
+            if files:
+                # Create relative path from the directory
+                relative_path = root
+                # Create destination path in the share directory
+                dest_path = os.path.join('share', package_name, relative_path)
+                # Add files with their paths
+                collected_files.append((dest_path, [os.path.join(root, f) for f in files]))
+    return collected_files
+
+
 data_files = []
 data_files.append(('share/ament_index/resource_index/packages', ['resource/' + package_name]))
 data_files.append(('share/' + package_name + '/launch', ['launch/rosbot_launch.py']))
@@ -10,8 +35,11 @@ data_files.append(('share/' + package_name + '/resource', ['resource/laser_filte
 data_files.append(('share/' + package_name + '/resource', ['resource/rosbot_webots.urdf']))
 data_files.append(('share/' + package_name + '/resource', ['resource/rosbot_links_remappings.yaml']))
 data_files.append(('share/' + package_name + '/worlds', ['worlds/rosbot.wbt']))
-data_files.append(('share/' + package_name + '/worlds/meshes', ['worlds/meshes/husarion_world.dae']))
 data_files.append(('share/' + package_name, ['package.xml']))
+data_files.extend(collect_files_recursively('protos', package_name))
+
+
+
 
 setup(
     name=package_name,
