@@ -33,7 +33,8 @@ WEBOTS_PORT = '4321'
 
 
 def get_ros2_nodes(*args):
-    package_dir = get_package_share_directory('webots_ros2_cleverhive')
+    package_dir = get_package_share_directory(
+        'webots_ros2_cleverhive')
     robot_description_path = os.path.join(
         package_dir, 'resource', 'rosbot_webots.urdf')
     links_remappings_file_path = os.path.join(
@@ -123,7 +124,8 @@ def get_ros2_nodes(*args):
 
 
 def generate_launch_description():
-    package_dir = get_package_share_directory('webots_ros2_cleverhive')
+    package_dir = get_package_share_directory(
+        'webots_ros2_cleverhive')
     world = LaunchConfiguration('world')
     mode = LaunchConfiguration('mode')
 

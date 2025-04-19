@@ -30,7 +30,8 @@ class TestClangFormat(unittest.TestCase):
 
     def setUp(self):
         """Set up called before each test."""
-        self.ROOT_FOLDER = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+        self.ROOT_FOLDER = os.path.dirname(
+            os.path.dirname(os.path.dirname(__file__)))
         print(self.ROOT_FOLDER)
 
     def _runClangFormat(self, f):
@@ -57,6 +58,7 @@ class TestClangFormat(unittest.TestCase):
             'webots_ros2_driver',
             'webots_ros2_epuck',
             'webots_ros2_husarion',
+            'webots_ros2_cleverhive',
             'webots_ros2_importer',
             'webots_ros2_mavic',
             'webots_ros2_msgs',
@@ -74,11 +76,15 @@ class TestClangFormat(unittest.TestCase):
         ]
         skippedDirectories = [
         ]
-        skippedPathsFull = [os.path.join(self.ROOT_FOLDER, os.path.normpath(path)) for path in skippedPaths]
-        skippedFilesFull = [os.path.join(self.ROOT_FOLDER, os.path.normpath(file)) for file in skippedFiles]
+        skippedPathsFull = [os.path.join(
+            self.ROOT_FOLDER, os.path.normpath(path)) for path in skippedPaths]
+        skippedFilesFull = [os.path.join(
+            self.ROOT_FOLDER, os.path.normpath(file)) for file in skippedFiles]
 
-        extensions = ['c', 'h', 'cpp', 'hpp', 'cc', 'hh', 'c++', 'h++', 'vert', 'frag']
-        modified_files = os.path.join(self.ROOT_FOLDER, 'tests', 'sources', 'modified_files.txt')
+        extensions = ['c', 'h', 'cpp', 'hpp', 'cc',
+                      'hh', 'c++', 'h++', 'vert', 'frag']
+        modified_files = os.path.join(
+            self.ROOT_FOLDER, 'tests', 'sources', 'modified_files.txt')
         sources = []
         if os.path.isfile(modified_files):
             with open(modified_files, 'r') as file:
@@ -110,7 +116,8 @@ class TestClangFormat(unittest.TestCase):
                     sources.append(os.path.normpath(line))
         else:
             for directory in directories:
-                path = os.path.join(self.ROOT_FOLDER, os.path.normpath(directory))
+                path = os.path.join(
+                    self.ROOT_FOLDER, os.path.normpath(directory))
                 for rootPath, dirNames, fileNames in os.walk(path):
                     shouldContinue = False
                     for skippedPath in skippedPathsFull:
@@ -118,7 +125,8 @@ class TestClangFormat(unittest.TestCase):
                             shouldContinue = True
                             break
                     for directory in skippedDirectories:
-                        currentDirectories = rootPath.replace(self.ROOT_FOLDER + os.sep, '').split(os.sep)
+                        currentDirectories = rootPath.replace(
+                            self.ROOT_FOLDER + os.sep, '').split(os.sep)
                         if directory in currentDirectories:
                             shouldContinue = True
                             break
@@ -128,7 +136,8 @@ class TestClangFormat(unittest.TestCase):
                         extension = os.path.splitext(fileName)[1][1:].lower()
                         if extension not in extensions:
                             continue
-                        path = os.path.normpath(os.path.join(rootPath, fileName))
+                        path = os.path.normpath(
+                            os.path.join(rootPath, fileName))
                         if path not in skippedFilesFull:
                             sources.append(path)
         curdir = os.getcwd()
@@ -141,10 +150,12 @@ class TestClangFormat(unittest.TestCase):
                                                      file.read().splitlines()):
                         diff += line + '\n'
                 except UnicodeDecodeError:
-                    self.assertTrue(False, msg='utf-8 decode problem in %s' % source)
+                    self.assertTrue(
+                        False, msg='utf-8 decode problem in %s' % source)
                 self.assertTrue(
                     len(diff) == 0,
-                    msg='Source file "%s" is not compliant with ClangFormat:\n\nDIFF:%s' % (source, diff)
+                    msg='Source file "%s" is not compliant with ClangFormat:\n\nDIFF:%s' % (
+                        source, diff)
                 )
         os.chdir(curdir)
 

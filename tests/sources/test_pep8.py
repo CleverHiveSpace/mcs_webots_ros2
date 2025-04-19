@@ -22,7 +22,8 @@ import fnmatch
 import pycodestyle
 import os
 import sys
-from io import open  # needed for compatibility with Python 2.7 for open(file, encoding='utf-8')
+# needed for compatibility with Python 2.7 for open(file, encoding='utf-8')
+from io import open
 
 from pyflakes import checker
 from pyflakes.reporter import Reporter
@@ -34,9 +35,13 @@ skippedDirectories = [
     'webots_ros2_driver/webots/lib',
     'webots_ros2_husarion/rosbot_ros',
     'webots_ros2_husarion/rosbot_xl_ros',
-    'webots_ros2_husarion/ros_components_description'
+    'webots_ros2_husarion/ros_components_description',
+    'webots_ros2_cleverhive/rosbot_ros',
+    'webots_ros2_cleverhive/rosbot_xl_ros',
+    'webots_ros2_cleverhive/ros_components_description'
 ]
-skippedDirectoriesFull = [os.path.join(ROOT_FOLDER, os.path.normpath(path)) for path in skippedDirectories]
+skippedDirectoriesFull = [os.path.join(
+    ROOT_FOLDER, os.path.normpath(path)) for path in skippedDirectories]
 
 
 class FlakesReporter(Reporter):
