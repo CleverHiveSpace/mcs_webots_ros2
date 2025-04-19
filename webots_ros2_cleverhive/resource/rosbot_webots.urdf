@@ -11,6 +11,8 @@
             <accelerometerName>imu accelerometer</accelerometerName>
             <inertialUnitName>imu inertial_unit</inertialUnitName>
         </plugin>
+        <device reference="navcam_front" type="Camera"><ros><topicName>/navcam_front/image_raw</topicName></ros></device>
+        <device reference="navcam_back" type="Camera"><ros><topicName>/navcam_back/image_raw</topicName></ros></device>
     </webots>
 
     <ros2_control name="wheels" type="system">
