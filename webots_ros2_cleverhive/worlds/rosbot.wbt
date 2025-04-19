@@ -8,11 +8,11 @@ EXTERNPROTO "../protos/Rosbot.proto"
 
 WorldInfo {
   info [
-    "ROSbot robot (Husarion)."
-    "The ROSbot with ROS 2 interface."
+    "CleverHive world with a ROSbot"
   ]
-  title "ROSbot"
+  title "CleverHive"
   lineScale 0.15
+  gravity 1.62
 }
 Viewpoint {
   orientation 0.247297 -0.168564 -0.954165 -1.93179
@@ -21,11 +21,17 @@ Viewpoint {
 }
 TexturedBackground {
   texture "empty_office"
-  luminosity 1.6
+  luminosity 0
   skybox FALSE
   skyColor [
-    0.5 0.5 0.5
+    0 0 0
   ]
+}
+PointLight {
+  attenuation 0 0 1
+  intensity 200
+  location 100 0 25
+  radius 10000
 }
 Floor {
   translation 1.75 -0.75 0
