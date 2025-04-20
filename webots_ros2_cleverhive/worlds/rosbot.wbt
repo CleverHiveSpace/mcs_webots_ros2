@@ -4,7 +4,7 @@
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/master/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/master/projects/objects/floors/protos/Floor.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/master/projects/appearances/protos/CarpetFibers.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/refs/heads/master/projects/objects/rocks/protos/Rock.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/master/projects/objects/rocks/protos/Rock.proto"
 EXTERNPROTO "../protos/Rosbot.proto"
 
 WorldInfo {
@@ -24,12 +24,12 @@ Background {
   skyColor [
     0 0 0
   ]
-  backUrl "./assets/skybox.png"
-  bottomUrl "./assets/skybox.png"
-  frontUrl "./assets/skybox.png"
-  leftUrl "./assets/skybox.png"
-  rightUrl "./assets/skybox.png"
-  topUrl "./assets/skybox.png"
+  backUrl "./assets/skybox.jpg"
+  bottomUrl "./assets/skybox.jpg"
+  frontUrl "./assets/skybox.jpg"
+  leftUrl "./assets/skybox.jpg"
+  rightUrl "./assets/skybox.jpg"
+  topUrl "./assets/skybox.jpg"
   luminosity 0
 }
 DirectionalLight {
@@ -61,11 +61,18 @@ Solid {
   ]
 }
 Solid {
+  name "terrain"
   translation -125 -125 -4.4
   children [
     Shape {
       appearance Appearance {
         material Material {}
+        texture ImageTexture {
+          url "./assets/moon.jpg"
+        }
+        textureTransform TextureTransform {
+          scale 50 50
+        }
       }
       geometry DEF MOON_ELEVATION_GRID ElevationGrid {
         xDimension 500
