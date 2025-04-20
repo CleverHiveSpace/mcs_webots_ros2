@@ -77,7 +77,8 @@ class TestROSbot(TestWebots):
                 return True
             return False
 
-        self.wait_for_messages(self.__node, Odometry, '/odometry/filtered', condition=on_position_message_received)
+        self.wait_for_messages(
+            self.__node, Odometry, '/odometry/filtered', condition=on_position_message_received)
 
     def testScan(self):
         def on_scan_message_received(message):
@@ -90,7 +91,8 @@ class TestROSbot(TestWebots):
                 elif value > 0.:
                     number_of_non_zeroes += 1
             return number_of_inf > 0 and number_of_non_zeroes > 0
-        self.wait_for_messages(self.__node, LaserScan, '/scan', condition=on_scan_message_received)
+        self.wait_for_messages(self.__node, LaserScan,
+                               '/scan', condition=on_scan_message_received)
 
     def tearDown(self):
         self.__node.destroy_node()
