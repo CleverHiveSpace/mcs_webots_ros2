@@ -34,9 +34,9 @@ data_files.append(('share/' + package_name + '/resource', ['resource/ekf.yaml'])
 data_files.append(('share/' + package_name + '/resource', ['resource/laser_filter.yaml']))
 data_files.append(('share/' + package_name + '/resource', ['resource/rosbot_webots.urdf']))
 data_files.append(('share/' + package_name + '/resource', ['resource/rosbot_links_remappings.yaml']))
-data_files.append(('share/' + package_name + '/worlds', ['worlds/rosbot.wbt']))
 data_files.append(('share/' + package_name, ['package.xml']))
 data_files.extend(collect_files_recursively('protos', package_name))
+data_files.extend(collect_files_recursively('worlds', package_name))
 
 
 

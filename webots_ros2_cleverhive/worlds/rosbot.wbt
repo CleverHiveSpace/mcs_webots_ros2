@@ -19,13 +19,17 @@ Viewpoint {
   position 6.40263 -11.291 6.82282
   follow "Rosbot"
 }
-TexturedBackground {
-  texture "empty_office"
-  luminosity 0
-  skybox FALSE
+Background {
   skyColor [
     0 0 0
   ]
+  backUrl "./assets/skybox.png"
+  bottomUrl "./assets/skybox.png"
+  frontUrl "./assets/skybox.png"
+  leftUrl "./assets/skybox.png"
+  rightUrl "./assets/skybox.png"
+  topUrl "./assets/skybox.png"
+  luminosity 0
 }
 PointLight {
   attenuation 0 0 1
