@@ -46,21 +46,26 @@ Rosbot {
   ]
 }
 Solid {
+  translation 4.19052 -1.21618 0.0775223
+  rotation 0.987098327899189 0.09721853229453134 0.1272220422612452 1.69684
+  name "lander"
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {}
+      }
+      geometry Mesh {
+        url "./meshes/lander_blue_moon.obj"
+      }
+    }
+  ]
+}
+Solid {
   translation -125 -125 -4.4
   children [
     Shape {
       appearance Appearance {
-        material Material {
-
-        }
-        texture ImageTexture {
-          url [
-            "./assets/moon.png"
-          ]
-        }
-        textureTransform TextureTransform {
-          scale 50 50
-        }
+        material Material {}
       }
       geometry DEF MOON_ELEVATION_GRID ElevationGrid {
         xDimension 500

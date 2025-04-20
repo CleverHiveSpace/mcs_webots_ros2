@@ -23,7 +23,7 @@ PROTO Rosbot [
   field  SFBool      supervisor      FALSE     # Is `Robot.supervisor`.
   field  SFBool      synchronization TRUE      # Is `Robot.synchronization`.
   field  SFBool      selfCollision   FALSE     # Is `Robot.selfCollision`.
-  field  MFNode      cameraSlot      [ Astra { name "camera" } ] # Extends the robot with an Astra RGBD camera.
+  field  MFNode      cameraSlot      [] # Extends the robot with an Astra RGBD camera.
   field  MFNode      lidarSlot       [ RpLidarA2 { name "laser" } ] # Extends the robot with a RpLidar A2 lidar.
   field  MFNode      payloadSlot     []
 ]
@@ -680,38 +680,53 @@ PROTO Rosbot [
         children [
           Camera {
             name "navcam_front"
-            translation 0.1 0 0.1
-            rotation 0 1 0 0.261799
+            translation 0.09 0 0.1
+            rotation 0 0 1 0
             width 640
             height 480
-            fieldOfView 2.5
+            fieldOfView 2.0
             children [
-              Shape {
+              DEF CAMERA_BODY Shape {
                 geometry Box {
                   size 0.01 0.01 0.01
                 }
                 appearance GlossyPaint {
-                  baseColor 0.100000 0.100000 0.100000
+                  baseColor 0 0 0.5
                 }
               }
             ]
           }
           Camera {
             name "navcam_back"
-            translation -0.1 0 0.1
-            rotation -0.129428106287513 0 1 3.14159
+            translation -0.09 0 0.1
+            rotation 0 0 1 3.14159
             width 640
             height 480
-            fieldOfView 2.5
+            fieldOfView 2.0
             children [
-              Shape {
-                geometry Box {
-                  size 0.01 0.01 0.01
-                }
-                appearance GlossyPaint {
-                  baseColor 0.100000 0.100000 0.100000
-                }
-              }
+              USE CAMERA_BODY
+            ]
+          }
+          Camera {
+            name "scicam_front"
+            translation 0.09 0 0.12
+            rotation 0 1 0 0.52359877559
+            width 1280
+            height 720
+            fieldOfView 0.3
+            children [
+              USE CAMERA_BODY
+            ]
+          }
+          Camera {
+            name "mastcam"
+            translation 0.09 0 0.3
+            rotation 0 1 0 1.57079632679
+            width 1280
+            height 720
+            fieldOfView 2.0
+            children [
+              USE CAMERA_BODY
             ]
           }
         ]
@@ -760,7 +775,7 @@ PROTO Rosbot [
     }
     physics Physics {
       density -1
-      mass 0.450000
+      mass 1.0
     }
   }
 }

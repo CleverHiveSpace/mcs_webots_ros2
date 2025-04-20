@@ -13,6 +13,8 @@
         </plugin>
         <device reference="navcam_front" type="Camera"><ros><topicName>/navcam_front/image_raw</topicName></ros></device>
         <device reference="navcam_back" type="Camera"><ros><topicName>/navcam_back/image_raw</topicName></ros></device>
+        <device reference="scicam_front" type="Camera"><ros><topicName>/scicam_front/image_raw</topicName></ros></device>
+        <device reference="mastcam" type="Camera"><ros><topicName>/mastcam/image_raw</topicName></ros></device>
     </webots>
 
     <ros2_control name="wheels" type="system">
