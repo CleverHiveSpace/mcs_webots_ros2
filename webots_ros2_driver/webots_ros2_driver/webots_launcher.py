@@ -94,6 +94,13 @@ class WebotsLauncher(ExecuteProcess):
         stdout = _ConditionalSubstitution(condition=gui, false_value='--stdout')
         stderr = _ConditionalSubstitution(condition=gui, false_value='--stderr')
         minimize = _ConditionalSubstitution(condition=gui, false_value='--minimize')
+        print("-==================================")
+        print(no_rendering)
+        print(stdout)
+        print(stderr)
+        print(minimize)
+        print(stream)
+        print("-==================================")
         if isinstance(stream, bool):
             stream_argument = _ConditionalSubstitution(condition=stream, true_value='--stream')
         else:

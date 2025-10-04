@@ -128,7 +128,7 @@ def generate_launch_description():
         'webots_ros2_cleverhive')
     world = LaunchConfiguration('world')
     mode = LaunchConfiguration('mode')
-    gui = not LaunchConfiguration('use_headless')
+    gui = LaunchConfiguration('gui')
 
     webots = WebotsLauncher(
         port=WEBOTS_PORT,
@@ -159,9 +159,9 @@ def generate_launch_description():
             description='Webots startup mode'
         ),
         DeclareLaunchArgument(
-            'use_headless',
+            'gui',
             default_value='false',
-            description='Run Webots in fake headless mode'
+            description='Run Webots in GUI or fake headless mode'
         ),
         webots,
         webots._supervisor,
